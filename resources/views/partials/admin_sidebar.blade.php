@@ -42,15 +42,15 @@
     </li>
 
     <!-- Nav Item - Data Cabang -->
-    <li class='nav-item {{ ($title === "Table Orders") ? "active" : "" }}'>
-        <a class="nav-link" href="tables.html">
+    <li class='nav-item {{ ($title === "Data Cabang") ? "active" : "" }}'>
+        <a class="nav-link" href="/data-cabang">
             <i class="fas fa-fw fa-building"></i>
             <span>Data Cabang</span></a>
     </li>
 
     <!-- Nav Item - Report -->
-    <li class='nav-item {{ ($title === "Table Orders") ? "active" : "" }}'>
-        <a class="nav-link" href="tables.html">
+    <li class='nav-item {{ ($title === "Reports") ? "active" : "" }}'>
+        <a class="nav-link" href="Reports">
             <i class="fas fa-fw fa-file"></i>
             <span>Report</span></a>
     </li>

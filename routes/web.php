@@ -35,3 +35,6 @@ Route::post('/users/update', [AdminController::class, 'ubahDataUsers'])->name('u
 Route::post('/users/delete', [AdminController::class, 'hapusDataUsers'])->name('hapusDataUser');
 
 Route::get('/data-murid', [AdminController::class, 'dataMurid'])->name('dataMurid');
+Route::get('/data-cabang', [AdminController::class, 'dataCabang'])->name('dataCabang');
+Route::post('/data-cabang/add', [AdminController::class, 'tambahDataCabang'])->name('tambahDataCabang');
+Route::get('/reports', [AdminController::class, 'reports'])->name('reports');

@@ -95,6 +95,20 @@
             var modal = $(this)
             modal.find('.modal-body #user_id').val(userid);
         })
+        $('#editCabangModal').on('show.bs.modal', function(event){
+            var button = $(event.relatedTarget)
+            var cabangid = button.data('mycabangid')
+            var nama_cabang = button.data('mynamacabang')
+            var modal = $(this)
+            modal.find('.modal-body #cabang_id').val(cabangid);
+            modal.find('.modal-body #nama_cabang').val(nama_cabang);
+        })
+        $('#deleteCabangModal').on('show.bs.modal', function(event){
+            var button = $(event.relatedTarget)
+            var cabangid = button.data('mycabangid')
+            var modal = $(this)
+            modal.find('.modal-body #cabang_id').val(cabangid);
+        })
         </script>
 
 </body>

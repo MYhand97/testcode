@@ -26,7 +26,7 @@ class AdminController extends Controller
             'email' => 'required|email',
             'password' => 'required|confirmed'
         ]);
-        $user = User::create([
+        User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password'])
@@ -40,7 +40,7 @@ class AdminController extends Controller
             'email' => 'required|email',
             'password' => 'required|confirmed'
         ]);
-        $user = User::whereId($id)->update([
+        User::whereId($id)->update([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password'])
@@ -73,38 +73,47 @@ class AdminController extends Controller
             return view('errors.404');
         }
     }
-    public function tambahDataMurid(Request $request){
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed'
-        ]);
-        $user = User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => $request['password']
-        ]);
-        return redirect('/users');
-    }
-    public function ubahDataMurid(Request $request){
-        $id = $request['user_id'];
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed'
-        ]);
-        $user = User::whereId($id)->update([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => $request['password']
-        ]);
-        return redirect('/users');
-    }
-    public function hapusDataMurid(Request $request){
-        $id = $request['user_id'];
-        $user = User::findOrFail($id);
-        $user->delete();
-        return redirect('/users');
-    }
     // END DATA MURID CONTROLLER
+
+    // START DATA CABANG CONTROLLER
+    public function dataCabang(){
+        if(auth()->check()){
+            $cabangs = Cabang::all();
+            return view('admin.admin_data_cabang', ['title' => 'Data Cabang'])
+            ->with('cabangs', $cabangs);
+        }
+        else{
+            return view('errors.404');
+        }
+    }
+    public function tambahDataCabang(Request $request){
+        if(auth()->check()){
+            $request->validate([
+                'nama_cabang' => 'required'
+            ]);
+            Cabang::create([
+                'nama_cabang' => $request['nama_cabang']
+            ]);
+            return redirect('/data-cabang');
+        }
+        else{
+            return view('errors.404');
+        }
+    }
+    public function ubahDataCabang(Request $request){
+        if(auth()->check()){
+            $id = $request['cabang_id'];
+            $request->validate([
+                'nama_cabang' => 'required'
+            ]);
+            Cabang::whereId($id)->update([
+                'nama_cabang' => $request['nama_cabang']
+            ]);
+            return redirect('/data-cabang');
+        }
+        else{
+            return view('errors.404');
+        }
+    }
+    // END DATA CABANG CONTROLLER
 }
